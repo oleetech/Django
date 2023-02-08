@@ -1,18 +1,23 @@
 ```bash
- ____      _                                     _____                                 ____                 _                           _   _   _                 _ 
- |  _ \    (_)   __ _   _ __     __ _    ___     |  ___|   ___    _ __   _ __ ___      / ___|  _   _   ___  | |_    ___    _ __ ___     | | | | | |_   _ __ ___   | |
- | | | |   | |  / _` | | '_ \   / _` |  / _ \    | |_     / _ \  | '__| | '_ ` _ \    | |     | | | | / __| | __|  / _ \  | '_ ` _ \    | |_| | | __| | '_ ` _ \  | |
- | |_| |   | | | (_| | | | | | | (_| | | (_) |   |  _|   | (_) | | |    | | | | | |   | |___  | |_| | \__ \ | |_  | (_) | | | | | | |   |  _  | | |_  | | | | | | | |
- |____/   _/ |  \__,_| |_| |_|  \__, |  \___/    |_|      \___/  |_|    |_| |_| |_|    \____|  \__,_| |___/  \__|  \___/  |_| |_| |_|   |_| |_|  \__| |_| |_| |_| |_|
-         |__/                   |___/                                  
-
-
-
-  / _ \  | |   ___    ___  |_   _|   ___    ___  | |__  
- | | | | | |  / _ \  / _ \   | |    / _ \  / __| | '_ \ 
- | |_| | | | |  __/ |  __/   | |   |  __/ | (__  | | | |
-  \___/  |_|  \___|  \___|   |_|    \___|  \___| |_| |_|
-                                                        
+  ____      _                                     ____                    _           _                            
+ |  _ \    (_)   __ _   _ __     __ _    ___     | __ )    ___     ___   | |_   ___  | |_   _ __    __ _   _ __    
+ | | | |   | |  / _` | | '_ \   / _` |  / _ \    |  _ \   / _ \   / _ \  | __| / __| | __| | '__|  / _` | | '_ \   
+ | |_| |   | | | (_| | | | | | | (_| | | (_) |   | |_) | | (_) | | (_) | | |_  \__ \ | |_  | |    | (_| | | |_) |  
+ |____/   _/ |  \__,_| |_| |_|  \__, |  \___/    |____/   \___/   \___/   \__| |___/  \__| |_|     \__,_| | .__/   
+         |__/                   |___/                                    
+         
+                           __                            
+                          / _|   ___    _ __   _ __ ___  
+                         | |_   / _ \  | '__| | '_ ` _ \ 
+                         |  _| | (_) | | |    | | | | | |
+                         |_|    \___/  |_|    |_| |_| |_|
+                                                 ___    _                 _                   _     
+                / _ \  | |   ___    ___  | |_    ___    ___  | |__  
+               | | | | | |  / _ \  / _ \ | __|  / _ \  / __| | '_ \ 
+               | |_| | | | |  __/ |  __/ | |_  |  __/ | (__  | | | |
+                \___/  |_|  \___|  \___|  \__|  \___|  \___| |_| |_|
+                                                                    
+                                                                              
 
 ``` 
 # Django Model Customize html  Form 
@@ -62,6 +67,12 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'email', 'message']
+        widgets = {
+        'name': forms.TextInput(attrs={'class': 'form-control'}),
+        'email': forms.TextInput(attrs={'class': 'form-control'}),
+        'message': forms.TextInput(attrs={'class': 'form-control'}),
+        
+    }
 ```
 
 
@@ -101,23 +112,37 @@ urlpatterns = [
 
 **modelform/templates/modelform/person.html**
 ```html
-<form method="post">
-    {% csrf_token %}
-    <div>
-      <label for="{{ form.name.id_for_label }}">Name:</label>
-      {{ form.name }}
-    </div>
-    <div>
-      <label for="{{ form.email.id_for_label }}">Email:</label>
-      {{ form.email }}
-    </div>
-    <div>
-      <label for="{{ form.message.id_for_label }}">Message:</label>
-      {{ form.message }}
-    </div>
-    <button type="submit">Submit</button>
-  </form>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-3">
+        <h2>Stacked form</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+            <label for="{{ form.name.id_for_label }}">Name:</label>
+            {{ form.name }}
+            </div>
+            <div>
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
+            </div>
+            <div>
+            <label for="{{ form.message.id_for_label }}">Message:</label>
+            {{ form.message }}
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+</div>
+</body>
+</html>
 
 ```
 ## Screenshots

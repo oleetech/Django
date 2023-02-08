@@ -147,7 +147,7 @@ urlpatterns = [
 ```
 ## Screenshots
 
-![App Screenshot](https://i.postimg.cc/V62xRRQF/simpleform.png)        
+![App Screenshot](https://i.postimg.cc/DfCKXjG1/bootstrap-form-django.png)        
 
 
 

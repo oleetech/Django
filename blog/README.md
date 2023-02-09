@@ -40,6 +40,8 @@ urlpatterns = [
     path('', views.blog, name='blog'),
 ]
 ```
+**blog/views.py**
+
 **blog/models.py**
 ```python
 from django.db import models

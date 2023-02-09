@@ -156,7 +156,9 @@ blog/templates/blog/home.html
 ```
 
 # Tinymce Editor Integration 
-![Logo](https://www.section.io/engineering-education/integrating-django-with-tinymce/tinymce-the-final-results.jpg
+![App Screenshot](https://www.section.io/engineering-education/integrating-django-with-tinymce/tinymce-the-final-results.jpg)  
+
+
 
 ## Installation 
 ```bash

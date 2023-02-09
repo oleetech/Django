@@ -154,6 +154,54 @@ blog/templates/blog/home.html
 </body>
 </html>
 ```
+
+# Tinymce Editor Integration 
+![Logo](https://www.section.io/engineering-education/integrating-django-with-tinymce/tinymce-the-final-results.jpg
+
+## Installation 
+```bash
+pip install django-tinymce
+```
+## Link With Django Project
+
+```python
+   INSTALLED_APPS = [
+     #...
+    'myapp',
+    'tinymce',
+    ]
+```
+## Setup Tinymce With Model
+```python
+from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
+## Add This Line
+from tinymce.models import HTMLField
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=120)
+    content = HTMLField() # Change This Line
+    published_at = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+```
+
+### Refresh The Browser 
+## Change Html Tempalte Tag
+```html
+<body>
+    <h1>My Posts</h1>
+	{% for post in posts %}
+		<h2>{{ post.title }}</h2>
+		<small>Published on {{ post.published_at | date:"M d, Y" }} by {{ post.author | title}}</small>
+
+		<p>{{ post.content|safe }}</p> <!-- Change This Line -->
+	{% endfor %}
+</body>
+```
+
+
 ## Screenshots
 
     

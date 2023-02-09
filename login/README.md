@@ -134,6 +134,17 @@ def sign_in(request):
 
 
 ## Logout form
+***urls.py |users app Folder***
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+        path('login/', views.sign_in, name='login'),
+        path('logout/',views.sign_out,name='logout'),
+
+]
+```
 
 ```python
 from django.contrib.auth import login, authenticate, logout

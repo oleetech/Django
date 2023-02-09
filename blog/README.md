@@ -105,8 +105,22 @@ admin.site.register(Post)
 
 ![App Screenshot](https://www.pythontutorial.net/wp-content/uploads/2022/11/django-admin-page-create-a-post.png)  
 
+
 ## Display data from the database
-blog/views.py
+
+**blog/urls.py**
+```python
+from django.urls import path
+
+from . import views
+urlpatterns=[
+    path('', views.blog, name='blog'),
+    path('home/',views.home,name='home'),
+]
+```
+
+
+**blog/views.py**
 ```python
 from django.shortcuts import render
 from .models import Post
@@ -122,16 +136,23 @@ def home(request):
 
 blog/templates/blog/home.html
 ```html
-{% extends 'base.html' %}
-	
-{% block content %}
-<h1>My Posts</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Posts</h1>
 	{% for post in posts %}
 		<h2>{{ post.title }}</h2>
 		<small>Published on {{ post.published_at | date:"M d, Y" }} by {{ post.author | title}}</small>
 		<p>{{ post.content }}</p>
 	{% endfor %}
-{% endblock content %}
+</body>
+</html>
 ```
 ## Screenshots
 

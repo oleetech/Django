@@ -239,10 +239,15 @@ def sign_up(request):
 	<input type="submit" value="Register" />
 </form>
 ```
-***** Form Like This*****
+
+*****Form Like This*****
+
 ![App Screenshot](https://i.postimg.cc/8ccjR8Ff/register.png)
+
 ******Customize the Django register form******
+
 ***templates/users/register.html
+
 ```html
 <form method="POST" novalidate>
 	{% csrf_token %}
@@ -286,7 +291,7 @@ def sign_up(request):
             return render(request, 'users/register.html', {'form': form})
 ```
 
-###Registration Form Link
+## Registration Form Link
 ```html
 {%if request.user.is_authenticated %}
 

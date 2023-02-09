@@ -203,16 +203,21 @@ def create_post(request):
  pass
 ```
 আমরা যদি লগআউট অবস্থায় কোন লিংক এ একসেস করার চেষ্টা করি তাহলে ডিফল্ট ভাবে accounts/login/ এই লিংকে পাঠিয়ে দেবে লগইন করার জন্য।  কিন্তু আমাদের লগইন ইউআরএল আগে আমরা users app এ users/login/ করেছিলাম এই লিংক পাওয়ানোর জন্য প্রজেক্ট এর settings.py ফাইলে login url ডিফাইন করে দেব 
+
 ***settings.py|project Folder***
+
 ```python
 LOGIN_URL = 'login'
 ```
-#Registration Form
+# Registration Form
+
 ***urls.py | users app Folder***
+
 ```python
     path('register/', views.sign_up, name='register'),
 ```
 ***forms.py | users app Folder***
+
 ```python
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -223,6 +228,7 @@ class RegisterForm(UserCreationForm):
         fields = ['username','email','password1','password2'] 
 ```
 ***views.py | users app folder***
+
 ```python
 from .forms import LoginForm,RegisterForm
 def sign_up(request):
@@ -230,7 +236,8 @@ def sign_up(request):
         form = RegisterForm()
         return render(request, 'users/register.html', { 'form': form})  
 ```
-***Create a file Template/users/register.html Folder inside app folder
+***Create a file Template/users/register.html Folder inside app folder***
+
 ```html
 <form method="POST" novalidate>
 	{% csrf_token %}
@@ -246,7 +253,7 @@ def sign_up(request):
 
 ******Customize the Django register form******
 
-***templates/users/register.html
+***templates/users/register.html***
 
 ```html
 <form method="POST" novalidate>
@@ -271,7 +278,8 @@ def sign_up(request):
 
 ## Registration logic
 
-***views.py ***
+***views.py***
+
 ```python
 def sign_up(request):
     if request.method == 'GET':

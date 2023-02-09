@@ -91,7 +91,7 @@ python manage.py runserver
 ![App Screenshot](https://www.pythontutorial.net/wp-content/uploads/2022/11/django-admin-page-admin-panel.png) 
 
 ## Add Model To Admin Panel Area
-**Djangoproject/admin.py**
+**blog/admin.py**
 ```python
 from django.contrib import admin
 from .models import Post

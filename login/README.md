@@ -207,4 +207,91 @@ def create_post(request):
 ```python
 LOGIN_URL = 'login'
 ```
+#Registration Form
+***urls.py | users app Folder***
+```python
+    path('register/', views.sign_up, name='register'),
+```
+***forms.py | users app Folder***
+```python
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model=User
+        fields = ['username','email','password1','password2'] 
+```
+***views.py | users app folder***
+```python
+from .forms import LoginForm,RegisterForm
+def sign_up(request):
+    if request.method == 'GET':
+        form = RegisterForm()
+        return render(request, 'users/register.html', { 'form': form})  
+```
+***Create a file Template/users/register.html Folder inside app folder
+```html
+<form method="POST" novalidate>
+	{% csrf_token %}
+	<h2>Sign Up</h2>
+	{{ form.as_p }}		
+	<input type="submit" value="Register" />
+</form>
+```
+***** Form Like This*****
+![App Screenshot](https://i.postimg.cc/8ccjR8Ff/register.png)
+******Customize the Django register form******
+***templates/users/register.html
+```html
+<form method="POST" novalidate>
+	{% csrf_token %}
+	<h2>Sign Up</h2>
+		
+	{% for field in form %}
+	<p>
+		{% if field.errors %}
+		<ul class="errorlist">
+			{% for error in field.errors %}
+			<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	 	{{ field.label_tag }} {{ field }}
+	</p>
+	{% endfor %}
+	<input type="submit" value="Register" />
+</form>
+```
+
+## Registration logic
+
+***views.py ***
+```python
+def sign_up(request):
+    if request.method == 'GET':
+        form = RegisterForm()
+        return render(request, 'users/register.html', {'form': form})    
+   
+    if request.method == 'POST':
+        form = RegisterForm(request.POST) 
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            messages.success(request, 'You have singed up successfully.')
+            login(request, user)
+            return redirect('blog')
+        else:
+            return render(request, 'users/register.html', {'form': form})
+```
+
+###Registration Form Link
+```html
+{%if request.user.is_authenticated %}
+
+	<a href="{% url 'register' %}">Register</a>
+{%endif%}
+
+https://i.postimg.cc/gJkvTTXm/register1.png
 

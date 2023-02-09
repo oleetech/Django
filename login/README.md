@@ -173,3 +173,38 @@ def sign_out(request):
 
 ![App Screenshot](https://i.postimg.cc/CKyq5vW8/logoutlink.png)
 
+## Only Logged User Can Access
+### Frontend Page Protect 
+html template some section only for login user can view. suppose edit button and delete button only for registered user.
+```html
+		{% if request.user.is_authenticated %}
+		<p>
+			<a href="{% url 'post-edit' post.id %}">Edit</a> 
+			<a href="{% url 'post-delete' post.id%}">Delete</a>
+		</p>
+		{% endif %}
+```
+### Backend Protect
+**create, update, and delete post functions using the login_required decorator**
+*****views.py*****
+```python
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def delete_post(request, id):
+  pass
+  
+@login_required
+def edit_post(request, id):
+  pass
+  
+@login_required
+def create_post(request):
+ pass
+```
+আমরা যদি লগআউট অবস্থায় কোন লিংক এ একসেস করার চেষ্টা করি তাহলে ডিফল্ট ভাবে accounts/login/ এই লিংকে পাঠিয়ে দেবে লগইন করার জন্য।  কিন্তু আমাদের লগইন ইউআরএল আগে আমরা users app এ users/login/ করেছিলাম এই লিংক পাওয়ানোর জন্য প্রজেক্ট এর settings.py ফাইলে login url ডিফাইন করে দেব 
+***settings.py|project Folder***
+```python
+LOGIN_URL = 'login'
+```
+

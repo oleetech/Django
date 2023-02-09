@@ -49,6 +49,67 @@ deactivate
 ```
  
 
+# Create Django Project
+ inside virtual env folder run the command . this will Create A folder name DjangoProject.
+ Start a new Django project:
+ ```bash
+ django-admin startproject Djangoproject
+```
+## Create A Django App
+inside Djangoproject Folder Run Code In CMD
+```bash
+python manage.py startapp blog
+```
+### Linking Blog App With Django Project
+open Djangoproject settings.py
+
+```python
+# Application definition
+
+INSTALLED_APPS = [
+    'blog',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+create a **urls.py** inside blog app . after open Djangoproject **urls.py** . Link app urls.py with Djangoproject urls.py
+
+**Djangoproject/urls.py**
+```python
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/',include('blog.urls'))
+]
+```
+**blog/urls.py**
+```python
+from django.urls import path
+
+from . import views
+urlpatterns=[
+    
+]
+```
+### Run Server
+inside Djangoproject Folder The Command In Cmd
+```bash
+python manage.py runserver
+```
+
+
+
+
+
+
+
 
 
 

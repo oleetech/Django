@@ -1,0 +1,22 @@
+<!-- document_list.html -->
+<h1>Document List</h1>
+<a href="{% url 'document_create' %}">Create Document</a>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>File</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    {% for document in documents %}
+    <tr>
+        <td>{{ document.name }}</td>
+        <td><a href="{{ document.file.url }}">{{ document.file.name }}/a></td>
+        <td>{{ document.description }}</td>
+        <td>
+            <a href="{% url 'document_update' document.pk %}">Edit</a>
+            <a href="{% url 'document_delete' document.pk %}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

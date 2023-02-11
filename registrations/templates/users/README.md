@@ -114,7 +114,7 @@ For Working With Image Need This
 MEDIA_URL = '/media/'  
   
 # Path where media is stored  
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  
+MEDIA_ROOT = [BASE_DIR / 'media/']  
 ```
 MEDIA_URL - It will serve the media files.
 MEDIA_ROOT - It specifies the path of the root where file will be stored.
@@ -128,7 +128,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home(), name='home'),
+    path('', views.home, name='home'),
 ]
 ```
 #### views.py:
@@ -144,7 +144,8 @@ def home(request):
 #### Django project urls.py
 ```python
 from django.urls import path,include
-
+from django.conf import settings  
+from django.conf.urls.static import static  
 urlpatterns = [
     path('imagecrud/',include('imagecrud.urls')),
 ]

@@ -197,10 +197,13 @@ urlpatterns = [
 from django.shortcuts import render, redirect
 from .forms import ImageForm
 from .models import Image
+from django.http import HttpResponse
+
+
 
 def index(request):
     images = Image.objects.all()
-    return render(request, 'image_upload/index.html', {'images': images})
+    return render(request, 'imagecrud/index.html', {'images': images})
 
 def add_image(request):
     if request.method == 'POST':
@@ -210,7 +213,7 @@ def add_image(request):
             return redirect('index')
     else:
         form = ImageForm()
-    return render(request, 'image_upload/add_image.html', {'form': form})
+    return render(request, 'imagecrud/add_image.html', {'form': form})
 
 def update_image(request, pk):
     image = Image.objects.get(pk=pk)
@@ -221,7 +224,7 @@ def update_image(request, pk):
             return redirect('index')
     else:
         form = ImageForm(instance=image)
-    return render(request, 'image_upload/update_image.html', {'form': form})
+    return render(request, 'imagecrud/update_image.html', {'form': form})
 
 def delete_image(request, pk):
     Image.objects.filter(pk=pk).delete()

@@ -1,6 +1,14 @@
 
 ![Logo](https://blueshelltech.com/media/2021/05/python-django.png)
+# Table Of Content
 
+  * [Setup Virtual Environment](#setup-virtual-environment)
+  * [Installation virtualenv](#installation-virtualenv)
+  * [Create A Folder For Virtual Environment](#create-a-folder-for-virtual-environment)
+- [Create Django Project](#create-django-project)
+  * [Create A Django App](#create-a-django-app)
+    + [Linking Blog App With Django Project](#linking-blog-app-with-django-project)
+    + [Run Server](#run-server)
 ## Setup Virtual Environment
 
 

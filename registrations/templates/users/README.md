@@ -108,16 +108,9 @@ Open the settings.py file in your project directory and add the following line t
 ```python
 INSTALLED_APPS = ['imagecrud',]
 ```
-For Working With Image Need This 
-```python
-# Base url to serve media files  
-MEDIA_URL = '/media/'  
+
   
-# Path where media is stored  
-MEDIA_ROOT = [BASE_DIR / 'media/']  
-```
-MEDIA_URL - It will serve the media files.
-MEDIA_ROOT - It specifies the path of the root where file will be stored.
+
 
 #### urls.py :
 To create a URL pattern for your app, you need to create a urls.py file inside your app directory and define your URL patterns there.

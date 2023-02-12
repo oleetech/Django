@@ -64,6 +64,8 @@ add the template directory to the TEMPLATES option in the settings.py file of th
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 ```
 create base.html in the templates
 ```html
@@ -142,8 +144,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('imagecrud/',include('imagecrud.urls')),
 ]
-if settings.DEBUG:  
-        urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
 ```
 ### Create Model :
 ```python
